@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const Weather = ({list}) => {
+const Weather = ({description, city, country, error, temperature}) => {
 
  
 
     function matchValues() {
-        if (list[0].weather[0].description) {
-            const weatherDescription = list[0].weather[0].description.split(" ")
+        if (description) {
+            const weatherDescription = description.split(' ')
             const clouds = ["cloudy", "clouds", "overcast", "cloud"]
             const sun = ["clear", "sunny", "sun"]
             const rain = ["rain", "showers", "thunder", "lightning"]
@@ -26,12 +26,11 @@ const Weather = ({list}) => {
         <div>
             <div classname="img">{matchValues()}</div>
             <div classname="facts">
-            <p>{list.city.name}, {list.city.country}</p>
-            <p>Condition: {list.weather[0].description}</p>
-            <p>Humidity: {list.main.humidity} %</p>
-            <p>Windspeed: {list.wind.speed} mph</p>
-            <p>Temperature: {list.main.temp} celsius</p>
-            
+            {city && country && <p>{city}, {country}</p>}
+            {temperature && <p>{temperature}  °C</p>}
+            {description && <p> Conditions: {description}</p>}
+            {error && <p>{error}</p>}
+            {description && matchValues()}
             </div>
         </div>
     )

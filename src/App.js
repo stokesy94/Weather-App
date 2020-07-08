@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Weather from "./Weather.js";
 import Form from "./Form.js";
 import {api} from "./apiKeys";
+import "./app.css";
 
 function App() {
 
@@ -50,23 +51,18 @@ function App() {
   console.log(weather.data);
   }
 
-  const createCard = () => {
-    return weather.data.list.map((list, index) => 
-    <Weather 
-    list = {list}
-    key = {index}
-    />
-    )
-}
   
   return ( 
     
     <div className="app">
       <h3>Weather App</h3>
       <Form getWeather={fetchData}/>
-      <button onClick={createCard}>Click</button>
-     
-    
+      <Weather
+       city={weather.city}
+       country={weather.country}
+       description={weather.description}
+       temperature={weather.temperature}
+       error={weather.error} />
     </div>
   );
    
